@@ -1,0 +1,39 @@
+%div.chat
+  %div.chat__leftside
+    %div.chat__leftside__account
+      %p.name= current_user.name
+      = link_to edit_user_path(current_user) do
+        %i.fa.fa-cog
+      = link_to new_chat_group_path() do
+        %i.fa.fa-pencil-square-o
+
+    %div.chat__leftside__group
+      - current_user.chat_groups.each do |chat_group|
+        = link_to chat_group_messages_path(chat_group.id) do
+          %p.groupName= chat_group.group_name
+        %p.groupNameMessage
+        = chat_group.show_last_message
+
+  %div.chat__main
+    %div.chat__main__group.clearfix
+      %p.chat__main__group__name= @group.group_name
+      = link_to edit_chat_group_path(@group.id) , class:'chat__main__group__edit' do
+        Edit
+      %p.chat__main__group__menbers
+        - @group.members.each do |member|
+          = member.user.name
+
+    %div.chat__main__message
+      - @messages.each do |message|
+        %li.chat__main__message__name= message.user.name
+        %li.chat__main__message__date= message.created_at
+        %li.chat__main__message__comment= message.body
+
+
+    %div.chat__main__typemessage
+      = form_for [@group,@message] do |f|
+        = f.text_field :body, :placeholder =>'type a message', autofocus: true,class:'chat__main__typemessage__type textbox',size: '75'
+        = f.label :image do
+          %i.fa.fa-file-image-o
+            = f.file_field :image, class:'chat__main__typemessage__fileInput'
+        = f.submit "SEND",class:'chat__main__typemessage__send'

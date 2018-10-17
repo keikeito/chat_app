@@ -5,7 +5,9 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version　   
+　　　
+ ruby 2.3.1p112
 
 * System dependencies
 
@@ -72,4 +74,7 @@ Things you may want to cover:
 ### Association
 - belongs_to :group
 - belongs_to :user
+
+![サイト画面](https://user-images.githubusercontent.com/27040393/47091744-6c45b080-d260-11e8-9197-5d0dfe0c678c.png)
+
 
